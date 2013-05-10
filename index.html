@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Test drag/drop</title>
+
+<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.23.custom.min.js"></script>
+<!--<link rel="stylesheet" href="development-bundle/themes/ui-lightness/jquery-ui-1.8.23.custom.css" type="text/css" media="all"/>-->
+
+<script type="text/javascript" src="js/autoscroll.js"></script>
+
+<style>
+
+ul {
+	padding:0px;
+	margin: 0px;
+}
+
+.sidebar{
+	width:200px;
+	margin-right:20px;
+	border:1px solid black;
+}
+
+#list li {
+	margin: 0 0 3px;
+	padding:5px;
+	background-color:#DBDBDB;
+	list-style: none;
+	width:50px;
+	height:50px;
+	float:left;
+	font-size:10px;
+	margin-left:0px;
+	margin-right:10px;
+	border:1px solid #ABABAB;
+}
+
+#list li:hover {
+	cursor:move;
+}
+
+
+#list li.placeholder { 
+	background-color:#D1D1D1;
+	padding:-10px;
+}
+
+.drop_list {
+	margin-top:10px;
+	list-style:none;
+	margin-left:0px;
+	height:300px;
+	overflow:auto;
+}
+
+.drop_list li{
+	margin:10px;
+	height:20px;
+	width:150px;
+	border:1px solid #B8B8B8;
+	padding:3px;
+	font-size:11px;
+}
+
+
+.upper, .lower {
+    height: 14px;
+    position: fixed;
+    width: 200px;
+    background: grey;
+    z-index: 10;
+}
+
+.lower {margin-top: -10px;}
+
+.targeted {
+	background-color:#FFCB21;
+}
+
+
+.parent{
+    position:relative;
+    height:200px;
+    width:180px;
+    background:#eee;
+    overflow:hidden;
+    padding-right:17px;
+}
+.scrollable{
+    position:absolute;
+    top:0px;        
+    width:180px;
+    background:#cf5;
+}
+.scrollbar{
+    cursor:n-resize;
+    position:absolute;
+    top:0px;
+    right:0px;
+    z-index:2;
+    background:#444;
+    width:17px;
+    border-radius:8px;
+}
+
+
+</style>
+
+<script type="text/javascript">
+$(document).ready(function(){	
+
+	$("#list ul li").draggable({
+		refreshPositions:true,
+		scroll: 'true',
+		cursorAt: { top: 30, left: 30 },
+		revert:true, 
+		placeholder: "placeholder",
+		opacity: 0.6, 
+		cursor: 'move'		
+	});
+
+	$(".drop_list li").droppable({
+		//accept: "#list ul li",
+		
+        hoverClass: "targeted",
+		//revert: true,
+	    drop: function( event, ui ) {
+			alert('droped');
+		}
+	});
+	
+	$('.upper').droppable({
+		over: function(event, ui){
+			$('.drop_list').autoscroll({
+				direction: 'up',
+				step: 200,
+				scroll: true
+			});
+			
+		},
+		out: function(event, ui){
+			$('.drop_list').autoscroll('destroy');
+		}
+	});
+
+	$('.lower').droppable({
+		over: function(event, ui){
+			$('.drop_list').autoscroll({
+				direction: 'down',
+				step: 200,
+				scroll: true
+			});
+		},
+		out: function(event, ui){
+			$('.drop_list').autoscroll('destroy');
+		}
+	});
+	
+});
+
+</script>
+</head>
+<body>
+
+<div id="container" style="height:340px;">
+	
+	<div style="float:left;">
+	<div class="upper"></div>
+		<div class='sidebar'>
+		
+			<ul class="drop_list">
+				<li>Drop Object 1</li>
+				<li>Drop Object 2</li>
+				<li>Drop Object 3</li>
+				<li>Drop Object 4</li>
+				<li>Drop Object 5</li>
+				<li>Drop Object 6</li>
+				<li>Drop Object 7</li>
+				<li>Drop Object 8</li>
+				<li>Drop Object 9</li>
+				<li>Drop Object 10</li>
+				<li>Drop Object 11</li>
+				<li>Drop Object 12</li>
+				<li>Drop Object 13</li>
+				<li>Drop Object 14</li>
+				<li>Drop Object 15</li>
+				<li>Drop Object 16</li>
+				<li>Drop Object 17</li>
+				<li>Drop Object 18</li>
+				<li>Drop Object 19</li>
+				<li>Drop Object 20</li>
+			</ul>
+		
+		
+		</div>
+	<div class="lower"></div>
+	</div>
+	
+	
+	<div id="list">
+		<ul>
+			<li>Object 1</li>
+			<li>Object 2</li>
+			<li>Object 3</li>
+		</ul>
+	</div>
+	
+	
+	
+</div>
+
+
+</body>
+</html>

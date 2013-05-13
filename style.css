@@ -1,0 +1,89 @@
+ul {
+	padding:0px;
+	margin: 0px;
+}
+
+.sidebar{
+	width:200px;
+	margin-right:20px;
+	border:1px solid black;
+}
+
+#list li {
+	margin: 0 0 3px;
+	padding:5px;
+	background-color:#DBDBDB;
+	list-style: none;
+	width:50px;
+	height:50px;
+	float:left;
+	font-size:10px;
+	margin-left:0px;
+	margin-right:10px;
+	border:1px solid #ABABAB;
+}
+
+#list li:hover {
+	cursor:move;
+}
+
+#list li.placeholder { 
+	background-color:#D1D1D1;
+	padding:-10px;
+}
+
+.drop_list {
+	margin-top:10px;
+	list-style:none;
+	margin-left:0px;
+	height:300px;
+	overflow:auto;
+}
+
+.drop_list li{
+	margin:10px;
+	height:20px;
+	width:150px;
+	border:1px solid #B8B8B8;
+	padding:3px;
+	font-size:11px;
+}
+
+.upper, .lower {
+    height: 14px;
+    position: fixed;
+    width: 200px;
+    background: transparent;
+    z-index: 10;
+}
+
+.lower {margin-top: -10px;}
+
+.targeted {
+	background-color:#FFCB21;
+}
+
+.parent{
+    position:relative;
+    height:200px;
+    width:180px;
+    background:#eee;
+    overflow:hidden;
+    padding-right:17px;
+}
+.scrollable{
+    position:absolute;
+    top:0px;        
+    width:180px;
+    background:#cf5;
+}
+.scrollbar{
+    cursor:n-resize;
+    position:absolute;
+    top:0px;
+    right:0px;
+    z-index:2;
+    background:#444;
+    width:17px;
+    border-radius:8px;
+}
